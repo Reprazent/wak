@@ -1,8 +1,8 @@
 require "helper"
 
-describe Wak::Package do
+describe Wak::Package::Base do
   before do
-    @info = Wak::Package.new("nginx")
+    @info = Wak::Package::Base.new("nginx")
   end
 
   it "knows when a package is installed" do
@@ -26,7 +26,7 @@ describe Wak::Package do
 
   describe "shell commands" do
     before do
-      Wak::Package.any_instance.unstub(:run_command)
+      Wak::Package::Base.any_instance.unstub(:run_command)
     end
 
     it "raises an error when a shell command fails" do

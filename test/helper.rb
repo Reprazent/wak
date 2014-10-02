@@ -7,6 +7,6 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'wak'
 class MiniTest::Spec
   before do
-    Wak::Package.any_instance.stubs(:run_command).returns("")
+    Wak::Package::Base.any_instance.stubs(:run_command).returns("")
   end
 end
