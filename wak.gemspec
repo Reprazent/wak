@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Wak::VERSION
   spec.authors       = ["Bob Van Landuyt"]
   spec.email         = ["bob@vanlanduyt.co"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = "Easy rack hosting in development"
+  spec.description   = "Host rack apps in development using ngnix"
   spec.homepage      = ""
   spec.license       = "MIT"
 
