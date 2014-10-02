@@ -35,6 +35,7 @@ module Wak
       end
 
       def run_command(command)
+        Wak.logger.info "Running `#{command}`"
         `#{command}`
       rescue StandardError => e
         raise CommandException.new(e) unless $?.success?
