@@ -10,3 +10,9 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task :default => :test
+
+
+desc "Open an pry session with wak loaded"
+task :console do
+  sh "bundle exec pry -I lib -r wak.rb"
+end
