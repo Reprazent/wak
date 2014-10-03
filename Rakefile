@@ -1,12 +1,7 @@
 require "bundler/gem_tasks"
-require 'rake/testtask'
-
-desc 'Run Devise unit tests.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
+task :test do
+  $LOAD_PATH.unshift('lib', 'test')
+  Dir.glob('./test/**/*_test.rb') { |f| require f }
 end
 
 task :default => :test
