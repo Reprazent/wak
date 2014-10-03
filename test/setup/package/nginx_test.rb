@@ -1,8 +1,8 @@
 require "helper"
 
-describe Wak::Package::Nginx do
+describe Wak::Setup::Package::Nginx do
   before do
-    @nginx = Wak::Package::Nginx.new
+    @nginx = Wak::Setup::Package::Nginx.new
     @nginx.stubs(:package_installed?).returns(false)
   end
 
@@ -19,7 +19,7 @@ describe Wak::Package::Nginx do
   describe "configuration" do
 
     it "opens the correct configuration file" do
-      Wak::Package::Configuration::File.expects(:new).with("/usr/local/etc/nginx/nginx.conf")
+      Wak::Setup::Package::Configuration::File.expects(:new).with("/usr/local/etc/nginx/nginx.conf")
       @nginx.config_file
     end
 
@@ -31,7 +31,7 @@ describe Wak::Package::Nginx do
           f.write("}")
         end
         Dir.stubs(:home).returns("/Users/bvl")
-        @dummy_config = Wak::Package::Configuration::File.new(@test_file.path)
+        @dummy_config = Wak::Setup::Package::Configuration::File.new(@test_file.path)
         @nginx.stubs(:config_file).returns(@dummy_config)
       end
 

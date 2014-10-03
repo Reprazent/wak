@@ -1,9 +1,9 @@
 
 require "helper"
 
-describe Wak::Package::Dnsmasq do
+describe Wak::Setup::Package::Dnsmasq do
   before do
-    @dnsmasq = Wak::Package::Dnsmasq.new
+    @dnsmasq = Wak::Setup::Package::Dnsmasq.new
     @dnsmasq.stubs(:package_installed?).returns(false)
   end
 
@@ -20,14 +20,14 @@ describe Wak::Package::Dnsmasq do
   describe "configuration" do
 
     it "opens the correct configuration file" do
-      Wak::Package::Configuration::File.expects(:new).with("/usr/local/etc/dnsmasq.conf")
+      Wak::Setup::Package::Configuration::File.expects(:new).with("/usr/local/etc/dnsmasq.conf")
       @dnsmasq.config_file
     end
 
     describe "writing" do
       before do
         @test_file = Tempfile.new("test_dnsmasq")
-        @dummy_config = Wak::Package::Configuration::File.new(@test_file.path)
+        @dummy_config = Wak::Setup::Package::Configuration::File.new(@test_file.path)
         @dnsmasq.stubs(:config_file).returns(@dummy_config)
       end
 

@@ -1,9 +1,9 @@
 require "logger"
 require "wak/version"
-require "wak/package/base"
-require "wak/package/nginx"
-require "wak/package/dnsmasq"
-require "wak/package/configuration/file"
+require "wak/setup/package/base"
+require "wak/setup/package/nginx"
+require "wak/setup/package/dnsmasq"
+require "wak/setup/package/configuration/file"
 
 module Wak
   class MissingConfigFile < StandardError; end

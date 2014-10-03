@@ -1,17 +1,17 @@
 require "helper"
 
-describe Wak::Package::Configuration::File do
+describe Wak::Setup::Package::Configuration::File do
   it "raises an error if a config file is missing" do
     ::File.expects(:exists?).with("nonexistant").returns(false)
     assert_raises Wak::MissingConfigFile do
-      Wak::Package::Configuration::File.new("nonexistant")
+      Wak::Setup::Package::Configuration::File.new("nonexistant")
     end
   end
 
   describe "config" do
     before do
       @tempfile = Tempfile.new("waktest")
-      @config_file = Wak::Package::Configuration::File.new(@tempfile.path)
+      @config_file = Wak::Setup::Package::Configuration::File.new(@tempfile.path)
     end
 
     it "can add lines to the content" do
