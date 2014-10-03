@@ -3,6 +3,7 @@ require "helper"
 describe Wak::Package::Nginx do
   before do
     @nginx = Wak::Package::Nginx.new
+    @nginx.stubs(:package_installed?).returns(false)
   end
 
   it "has the correct name" do

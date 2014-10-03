@@ -16,6 +16,8 @@ module Wak
         return if package_installed?
         run_install_command
         run_copy_launchd
+        yield if block_given?
+        start!
       end
 
       def start!

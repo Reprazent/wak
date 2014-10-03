@@ -11,9 +11,9 @@ module Wak
       end
 
       def install!
-        super
-        configure!
-        start!
+        super do
+          configure!
+        end
       end
 
       def configure!
