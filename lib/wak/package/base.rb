@@ -16,6 +16,9 @@ module Wak
         return if package_installed?
         run_install_command
         run_copy_launchd
+      end
+
+      def start!
         run_load_launchd
       end
 

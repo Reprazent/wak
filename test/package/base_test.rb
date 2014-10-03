@@ -14,8 +14,12 @@ describe Wak::Package::Base do
     @info.expects(:package_installed?).returns(false)
     @info.expects(:run_install_command)
     @info.expects(:run_copy_launchd)
-    @info.expects(:run_load_launchd)
     @info.install!
+  end
+
+  it "can start itself" do
+    @info.expects(:run_load_launchd)
+    @info.start!
   end
 
   it "doesn't try to install itself when it was already installed" do
