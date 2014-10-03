@@ -10,7 +10,7 @@ module Wak
         end
 
         def file_content
-          file.read.split("\n")
+          @file_content ||= file.read.split("\n")
         end
 
         def build_new_config(lines, after = "")
