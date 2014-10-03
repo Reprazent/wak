@@ -2,7 +2,7 @@ module Wak
   module Setup
     module Package
       class Base
-
+        include Wak::Utils::Runner
         attr_accessor :name
 
         def initialize(name)
@@ -37,13 +37,6 @@ module Wak
         def run_load_launchd
           load_command = "sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.#{name}.plist"
           run_command(load_command)
-        end
-
-        def run_command(command)
-          Wak.logger.info "Running `#{command}`"
-          `#{command}`
-        rescue StandardError => e
-          raise Wak::CommandException.new(e) unless $?.success?
         end
 
       end

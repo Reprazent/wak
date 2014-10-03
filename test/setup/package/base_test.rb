@@ -29,15 +29,6 @@ describe Wak::Setup::Package::Base do
   end
 
   describe "shell commands" do
-    before do
-      Wak::Setup::Package::Base.any_instance.unstub(:run_command)
-    end
-
-    it "raises an error when a shell command fails" do
-      assert_raises Wak::CommandException do
-        @info.run_command("broken command")
-      end
-    end
 
     it "installs using homebrew" do
       @info.expects(:run_command).with("brew install nginx")

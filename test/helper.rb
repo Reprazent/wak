@@ -10,6 +10,7 @@ require 'wak'
 class MiniTest::Spec
   before do
     Wak::Setup::Package::Base.any_instance.stubs(:run_command).returns("")
+    Wak::Setup::DnsConfigurator.any_instance.stubs(:run_command).returns("")
     Wak.stubs(:logger).returns(Logger.new(nil))
   end
 end
