@@ -30,7 +30,7 @@ describe Wak::Package::Base do
     end
 
     it "raises an error when a shell command fails" do
-      assert_raises CommandException do
+      assert_raises Wak::CommandException do
         @info.run_command("broken command")
       end
     end

@@ -1,4 +1,3 @@
-class CommandException < StandardError; end
 module Wak
   module Package
     class Base
@@ -38,7 +37,7 @@ module Wak
         Wak.logger.info "Running `#{command}`"
         `#{command}`
       rescue StandardError => e
-        raise CommandException.new(e) unless $?.success?
+        raise Wak::CommandException.new(e) unless $?.success?
       end
 
     end
