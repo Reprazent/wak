@@ -2,6 +2,7 @@ require "logger"
 require "wak/version"
 require "wak/package/base"
 require "wak/package/nginx"
+require "wak/package/dnsmasq"
 require "wak/package/configuration/file"
 
 module Wak
