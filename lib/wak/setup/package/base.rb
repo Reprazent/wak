@@ -10,7 +10,7 @@ module Wak
         end
 
         def package_installed?
-          run_command("which #{name}") != "#{name} not found"
+          !run_command("which #{name}").empty?
         end
 
         def install!
