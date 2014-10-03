@@ -1,6 +1,7 @@
 # coding: utf-8
 require "minitest"
 require "minitest/autorun"
+require "minitest/pride"
 require 'mocha/mini_test'
 require "pry"
 $LOAD_PATH.unshift(File.dirname(__FILE__))
