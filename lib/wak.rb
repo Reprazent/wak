@@ -1,5 +1,6 @@
 require "logger"
 require "wak/version"
+require "wak/utils/file_utils"
 require "wak/setup/package/base"
 require "wak/setup/package/nginx"
 require "wak/setup/package/dnsmasq"
