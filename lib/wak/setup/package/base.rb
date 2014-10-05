@@ -10,12 +10,11 @@ module Wak
         end
 
         def package_installed?
-          !run_command("which #{name}").empty?
+          !run_command("which #{name}").nil?
         end
 
         def install!
-          return if package_installed?
-          run_install_command
+          run_install_command unless package_installed?
           run_copy_launchd
           yield if block_given?
           start!
