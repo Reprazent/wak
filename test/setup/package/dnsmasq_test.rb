@@ -20,6 +20,10 @@ describe Wak::Setup::Package::Dnsmasq do
 
   it "configures and starts itself on installation" do
     @dnsmasq.stubs(:package_installed?).returns(true)
+    config = mock
+    config.expects(:has_config?).returns(false)
+    @dnsmasq.stubs(:config_file).returns(config)
+    @dnsmasq.stubs(:package_installed?).returns(true)
     @dnsmasq.expects(:configure!)
     @dnsmasq.expects(:start!)
     @dnsmasq.install!

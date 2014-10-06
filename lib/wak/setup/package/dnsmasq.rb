@@ -12,7 +12,7 @@ module Wak
 
         def install!
           super do
-            configure!
+            configure! unless config_file.has_config?(config)
           end
         end
 
