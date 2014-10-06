@@ -4,14 +4,22 @@ require "helper"
 describe Wak::Setup::Package::Dnsmasq do
   before do
     @dnsmasq = Wak::Setup::Package::Dnsmasq.new
-    @dnsmasq.stubs(:package_installed?).returns(false)
+    @dnsmasq.stubs(:launchd_loaded?).returns(false)
   end
 
   it "has the correct name" do
     assert_equal "dnsmasq", @dnsmasq.name
   end
 
+  it "raises an error when the package is not installed yet" do
+    @dnsmasq.stubs(:package_installed?).returns(false)
+    assert_raises Wak::MissingPackage do
+      @dnsmasq.install!
+    end
+  end
+
   it "configures and starts itself on installation" do
+    @dnsmasq.stubs(:package_installed?).returns(true)
     @dnsmasq.expects(:configure!)
     @dnsmasq.expects(:start!)
     @dnsmasq.install!
