@@ -31,6 +31,16 @@ describe Wak::Setup::Package::Base do
     @info.install!
   end
 
+  it "can check if it is loaded as a launchd" do
+    @info.expects(:run_command).with("sudo launchctl list | grep nginx").returns("6134	78	homebrew.mxcl.nginx")
+    assert @info.launchd_loaded?
+  end
+
+  it "can check if the launchd plist is coppied" do
+    File.expects(:exists?).with("/Library/LaunchDaemons/homebrew.mxcl.nginx.plist").returns(true)
+    assert @info.launchd_copied?
+  end
+
   describe "shell commands" do
 
     it "installs using homebrew" do

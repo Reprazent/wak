@@ -18,7 +18,7 @@ module Wak
         end
 
         def launchd_loaded?
-          !run_command("launchctl list | grep #{name}").nil?
+          !run_command("sudo launchctl list | grep #{name}").nil?
         end
 
         def install!(&config_block)
