@@ -12,6 +12,9 @@ describe Wak::Setup::Package::Nginx do
   end
 
   it "configures and starts itself on installation" do
+    config = mock
+    config.stubs(:has_config?).returns(false)
+    @nginx.expects(:config_file).returns(config)
     @nginx.expects(:configure!)
     @nginx.expects(:start!)
     @nginx.install!
