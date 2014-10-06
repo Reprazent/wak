@@ -12,8 +12,11 @@ describe Wak::Setup::Package::Base do
 
   it "can install itself" do
     @info.expects(:package_installed?).returns(false)
+    @info.expects(:launchd_copied?).returns(false)
+    @info.expects(:launchd_loaded?).returns(false)
     @info.expects(:run_install_command)
     @info.expects(:run_copy_launchd)
+    @info.expects(:run_load_launchd)
     @info.install!
   end
 

@@ -4,6 +4,7 @@ describe Wak::Setup::Package::Nginx do
   before do
     @nginx = Wak::Setup::Package::Nginx.new
     @nginx.stubs(:package_installed?).returns(false)
+    @nginx.stubs(:launchd_loaded?).returns(false)
   end
 
   it "has the correct name" do

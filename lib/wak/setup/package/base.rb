@@ -13,11 +13,19 @@ module Wak
           !run_command("which #{name}").nil?
         end
 
-        def install!
+        def launchd_copied?
+          File.exists?("/Library/LaunchDaemons/homebrew.mxcl.#{name}.plist")
+        end
+
+        def launchd_loaded?
+          !run_command("launchctl list | grep #{name}").nil?
+        end
+
+        def install!(&config_block)
           run_install_command unless package_installed?
-          run_copy_launchd
+          run_copy_launchd unless launchd_copied?
           yield if block_given?
-          start!
+          start! unless launchd_loaded?
         end
 
         def start!
