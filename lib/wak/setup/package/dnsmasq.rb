@@ -21,9 +21,8 @@ module Wak
         end
 
         def run_install_command
-          Wak.logger.problem "Error", "Installing dnsmasq automagically fails for now"
-
-          fail Wak::MissingPackage.new("Please run `brew install dnsmasq` manually and run setup again")
+          Wak.logger.problem "Error", "Installing dnsmasq automagically fails for now", "Please run `brew install dnsmasq` manually and run setup again"
+          fail Wak::MissingPackage.new
         end
 
         def config
