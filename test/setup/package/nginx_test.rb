@@ -5,6 +5,7 @@ describe Wak::Setup::Package::Nginx do
     @nginx = Wak::Setup::Package::Nginx.new
     @nginx.stubs(:package_installed?).returns(false)
     @nginx.stubs(:launchd_loaded?).returns(false)
+    @nginx.stubs(:sites_dir_exists?).returns(false)
   end
 
   it "has the correct name" do
@@ -16,6 +17,7 @@ describe Wak::Setup::Package::Nginx do
     config.stubs(:has_config?).returns(false)
     @nginx.expects(:config_file).returns(config)
     @nginx.expects(:configure!)
+    @nginx.expects(:create_sites_dir!)
     @nginx.expects(:start!)
     @nginx.install!
   end
@@ -25,6 +27,11 @@ describe Wak::Setup::Package::Nginx do
     it "opens the correct configuration file" do
       Wak::Setup::Package::Configuration::File.expects(:new).with("/usr/local/etc/nginx/nginx.conf")
       @nginx.config_file
+    end
+
+    it "uses the sites dir to build a config line" do
+      @nginx.expects(:sites_dir).returns("hello world")
+      assert_equal "include hello world/*.conf;", @nginx.config
     end
 
     describe "writing" do

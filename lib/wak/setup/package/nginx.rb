@@ -1,3 +1,4 @@
+require 'fileutils'
 module Wak
   module Setup
     module Package
@@ -5,7 +6,8 @@ module Wak
         NAME = "nginx"
         CONFIG_PATH = "/usr/local/etc/nginx/nginx.conf"
         AFTER_LINE = "http {"
-        CONFIG_LINE = "include #{Dir.home}/.config/wak/sites/*.conf;"
+        SITES_DIR = "#{Dir.home}/.config/wak/sites"
+        CONFIG_LINE = "include %s/*.conf;"
 
         def initialize
           super(NAME)
@@ -14,6 +16,7 @@ module Wak
         def install!
           super do
             configure! unless config_file.has_config?(config)
+            create_sites_dir! unless sites_dir_exists?
           end
         end
 
@@ -26,11 +29,23 @@ module Wak
         end
 
         def config
-          CONFIG_LINE
+          CONFIG_LINE % [sites_dir]
         end
 
         def after
           AFTER_LINE
+        end
+
+        def sites_dir
+          SITES_DIR
+        end
+
+        def sites_dir_exists?
+          Dir.exists?(sites_dir)
+        end
+
+        def create_sites_dir!
+          FileUtils.mkdir_p(sites_dir)
         end
 
         def config_file

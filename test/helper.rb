@@ -11,6 +11,7 @@ class MiniTest::Spec
   before do
     Wak::Setup::Package::Base.any_instance.stubs(:run_command).returns("")
     Wak::Setup::DnsConfigurator.any_instance.stubs(:run_command).returns("")
+    Wak::Setup::Package::Nginx.any_instance.stubs(:create_sites_dir!)
     Wak.stubs(:logger).returns(::Wak::Logger.new(nil))
   end
 end
