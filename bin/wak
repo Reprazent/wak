@@ -1,0 +1,22 @@
+#! /usr/bin/ruby
+
+require "thor"
+require "wak"
+
+class WakCommand < Thor
+
+  desc "setup", "Installs nginx and dnsmasq and configures them"
+  def setup
+    Wak::Setup::SetupRunner.new.run
+  end
+
+  desc "version", "Displays current version"
+  def version
+    puts Wak::Version.get_version.version
+  rescue => e
+    puts e.message
+  end
+
+end
+
+WakCommand.start
