@@ -15,9 +15,9 @@ module Wak
       def install_packages
         packages.each do |package|
           if package.package_installed?
-            Wak.logger.info "#{package.name} already installed"
+            Wak.logger.ok "Installed", "#{package.name} already installed"
           else
-            Wak.logger.info "Installing #{package.name}"
+            Wak.logger.install_message "Installing #{package.name}"
             package.install!
           end
         end
