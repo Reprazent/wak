@@ -15,6 +15,15 @@ module Wak
       end
     end
 
+    def command(command)
+      info "Running `#{command}`"
+    end
+
+    def output(output)
+      prefix = " " * 3
+      info("#{prefix} #{output}")
+    end
+
     def ok(title, message)
       info
       info("#{green(title)}: #{message}")

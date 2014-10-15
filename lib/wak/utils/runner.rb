@@ -2,11 +2,11 @@ module Wak
   module Utils
     module Runner
       def run_command(command)
-        Wak.logger.info "Running `#{command}`"
+        Wak.logger.command command
         output = []
         IO.popen(command) do |io|
           while(line = io.gets) do
-            Wak.logger.info line.chomp!
+            Wak.logger.output line.chomp!
             output << line
           end
           io.close
