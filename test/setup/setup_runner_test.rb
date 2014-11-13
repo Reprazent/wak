@@ -1,9 +1,6 @@
 require "helper"
 
 describe Wak::Setup::SetupRunner do
-  before do
-
-  end
 
   it "can builds both ngnix and dnsmasq" do
     Wak::Setup::Package::Dnsmasq.expects(:new)

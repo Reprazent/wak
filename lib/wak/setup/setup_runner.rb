@@ -4,7 +4,7 @@ module Wak
 
       attr_accessor :packages
       def initialize
-        @packages = [Wak::Setup::Package::Nginx.new, Wak::Setup::Package::Dnsmasq.new]
+        @packages = [Wak::Setup::Package.nginx, Wak::Setup::Package.dnsmasq]
       end
 
       def run
